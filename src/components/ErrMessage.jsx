@@ -5,7 +5,7 @@ ErrMessage.propTypes = {
 	message: PropTypes.string,
 };
 
-function ErrMessage({ message }) {
+function ErrMessage({ message }) { // Gets the Message thrown from Fetch func
 	return (
 		<Typography
 			sx={{

@@ -1,28 +1,32 @@
 import { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
-import "./App.css";
 import Main from "./components/Main";
+import "./App.css";
 
 export default function App() {
-	const [movies, setMovies] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [err, setError] = useState("");
-	const [query, setQuery] = useState("");
-	const [selectedMovie, setSelectedMovie] = useState(null);
+	const [movies, setMovies] = useState([]); // Movie list
+	const [isLoading, setIsLoading] = useState(false); // For loading animation
+	const [err, setError] = useState(""); // Set the Error Message
+	const [query, setQuery] = useState(""); // Query from the Input field
+	const [selectedMovie, setSelectedMovie] = useState(null); // Initial is null, set to movie object when clicked from the list
 	const [isSelected, setIsSelected] = useState(false);
 
 	function handleClick(id) {
+		// Click the movie and get its ID
+		// Find the movie with Unique ID
+		// Set movie as state (selected)
+		// Toggle isSelected if a movie is actively clicked from the list
 		const movie = movies.find((movie) => movie.id === id);
 		setSelectedMovie(movie);
 		setIsSelected(true);
 	}
 
 	function disableSelect() {
-		setIsSelected(false);
+		setIsSelected(false); // Set is selected back to false, when movie is deselected
 	}
 
 	useEffect(() => {
-		async function getData() {
+		async function getData() { 
 			try {
 				setIsLoading(true);
 				const response = await fetch(
@@ -47,7 +51,7 @@ export default function App() {
 			}
 		}
 		getData();
-	}, [query]);
+	}, [query]); // Update with Query Change
 
 	return (
 		<>

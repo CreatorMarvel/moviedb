@@ -16,8 +16,7 @@ function SelectedMovie({ selectedMovie }) {
 					{
 						headers: {
 							accept: "application/json",
-							Authorization:
-								"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MGE2ZTUzNzRkZTk3OWI0YWU5ZmY3ODdlODdmZmIzZiIsIm5iZiI6MTczNjY2NDIwMi40MjcsInN1YiI6IjY3ODM2NDhhMTM2ZTE1N2NmMjdiMjgzZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.UVL71_o15hpzPB35ygOwSN2XeDnXDiawSEeva9Ryc7s",
+							Authorization: `Bearer ${import.meta.env.VITE_AUTHORIZATION_KEY}`,
 						},
 					}
 				);
@@ -46,7 +45,7 @@ function SelectedMovie({ selectedMovie }) {
 					<p>Release &sdot; {selectedMovie.release_date}</p>
 					<ul>
 						{genres
-							.filter((item) => selectedMovie.genre_ids.includes(item.id)) // Filter based on targetIds array
+							.filter((item) => selectedMovie.genre_ids.includes(item.id)) // Filter based on genres array
 							.map((item) => (
 								<li key={item.id}>{item.name}</li> // Render matching items
 							))}
